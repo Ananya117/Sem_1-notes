@@ -1,0 +1,51 @@
+public class TowerOfHanoi {
+    private int numDiscs;
+    private char fromTower;
+    private char toTower;
+    private char auxTower;
+    
+    // non-parameterized constructor
+    public TowerOfHanoi() {
+        numDiscs = 0;
+        fromTower = 'A';
+        toTower = 'B';
+        auxTower = 'C';
+    }
+    
+    // parameterized constructor
+    public TowerOfHanoi(int numDiscs, char fromTower, char toTower, char auxTower) {
+        this.numDiscs = numDiscs;
+        this.fromTower = fromTower;
+        this.toTower = toTower;
+        this.auxTower = auxTower;
+    }
+    
+    // non-parameterized method
+    public void solve() {
+        moveDiscs(numDiscs, fromTower, toTower, auxTower);
+    }
+    
+    // parameterized method
+    private void moveDiscs(int numDiscs, char fromTower, char toTower, char auxTower) {
+        if (numDiscs == 1) {
+            System.out.println("Move disc 1 from " + fromTower + " to " + toTower);
+        } else {
+            moveDiscs(numDiscs - 1, fromTower, auxTower, toTower);
+            System.out.println("Move disc " + numDiscs + " from " + fromTower + " to " + toTower);
+            moveDiscs(numDiscs - 1, auxTower, toTower, fromTower);
+        }
+    }
+    
+    // main method
+    public static void main(String[] args) {
+        // create a parameterized object with 3 discs
+        TowerOfHanoi game1 = new TowerOfHanoi(3, 'A', 'C', 'B');
+        // call non-parameterized method to solve the puzzle
+        game1.solve();
+        
+        // create a parameterized object with 4 discs
+        TowerOfHanoi game2 = new TowerOfHanoi(4, 'A', 'C', 'B');
+        // call non-parameterized method to solve the puzzle
+        game2.solve();
+    }
+}
